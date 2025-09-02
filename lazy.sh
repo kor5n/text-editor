@@ -1,2 +1,2 @@
 gcc kilo.c
-./a.out
+./a.out kilo.c
