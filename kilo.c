@@ -270,9 +270,9 @@ void editorRowInsertChar(erow *row, int at, int c)
 void editorRowDelChar(erow *row, int at)
 {
     if (at < 0 || at >= row->size) return;
-    memmove(&row->chars[at], &row->chars[at + 1], row->size[at] - at);
+    memmove(&row->chars[at], &row->chars[at + 1], row->size - at);
     row->size--;
-    editorUpdateRow();
+    editorUpdateRow(row);
     E.dirty++;
 }
 
@@ -295,7 +295,7 @@ void editorDelChar()
     erow *row = &E.row[E.cy];
     if (E.cx > 0)
     {
-        editorDelChar(row, E.cx -1);
+        editorRowDelChar(row, E.cx -1);
         E.cx--;
     }
 }
